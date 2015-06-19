@@ -1,0 +1,12 @@
+CXX = x86_64-w64-mingw32-g++
+CXXFLAGS = -std=c++11 -static -pedantic -Wall -Wextra -Werror -O2
+
+ana.exe: ana.obj enable.obj
+	$(CXX) $(CXXFLAGS) ana.obj enable.obj -o ana.exe
+ana.obj: ana.cpp enable.hpp
+	$(CXX) -c $(CXXFLAGS) ana.cpp -o ana.obj
+enable.obj: enable.cpp enable.hpp
+	$(CXX) -c $(CXXFLAGS) enable.cpp -o enable.obj
+
+clean:
+	$(RM) *.obj ana.exe
