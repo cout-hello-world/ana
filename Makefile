@@ -1,12 +1,9 @@
-CXX = g++
 CXXFLAGS = -std=c++11 -pedantic -Wall -Wextra -Werror -O2
+OBJECTS = ana.o enable.o
 
-ana: ana.o enable.o
-	$(CXX) $(CXXFLAGS) ana.o enable.o -o ana
-ana.o: ana.cpp enable.hpp
-	$(CXX) -c $(CXXFLAGS) ana.cpp
-enable.o: enable.cpp enable.hpp
-	$(CXX) -c $(CXXFLAGS) enable.cpp
+ana: $(OBJECTS)
+	$(CXX) -o $@ $(OBJECTS)
+$(OBJECTS): enable.hpp
 
 clean:
 	$(RM) *.o ana
